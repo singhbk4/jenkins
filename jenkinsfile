@@ -3,7 +3,7 @@ pipeline{
     stage('build'){
       steps{
         script{
-          sh'cte.py', sh'main_script.py'
+          sh 'main_script.py'
         }
       }
     }
