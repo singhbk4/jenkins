@@ -24,9 +24,7 @@ for value in data:
             if tenantCreate["totalCount"] != "0" and "already exist" in tenantCreate['imdata'][0]['error']['attributes']['text']:
                 print(f"Tenant {tenant} already exist")
                 break
-            # else:
-            #     print("Creating new Tenant, 2nd")
-            #     header = acilogin()
-            #     tenantCreate = ACItenantConfig(tenant, header)
+            else:
+                print("Good Job!!!")
+                break
         break
-
