@@ -28,6 +28,7 @@ for value in data:
                 break
             else:
                 break
+        break
 
     for vrf in vrf:
         l3outchk = True
@@ -35,9 +36,9 @@ for value in data:
         header = acirefresh(header)
         tenant = data[value]["tenant"]
         vrf = data[value]["vrf"]
-        vrfCreate = ACIvrfConfig(tenant, header)
+        vrfCreate = ACIvrfConfig(tenant,vrf,header)
         while True:
-            if ACIvrfConfig["totalCount"] != "0" and "already exist" in ACIvrfConfig['imdata'][0]['error']['attributes']['text']:
+            if vrfCreate["totalCount"] != "0" and "already exist" in vrfCreate['imdata'][0]['error']['attributes']['text']:
                 print(f"Tenant {vrf} already exist")
                 break
             else:
