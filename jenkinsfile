@@ -1,11 +1,11 @@
-pipeline {
-    agent any
-    stages {
-        stage('build') {
-            steps {
-                sh 'cte.py'
-                sh 'main_script.py'
-            }
+pipeline{
+  agentanystages{
+    stage('build'){
+      steps{
+        script{
+          sh'cte.py', sh'main_script.py'
         }
+      }
     }
+  }
 }
