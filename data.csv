@@ -1,2 +1,2 @@
-epg,bd,tenant
-epg-vlan10,bd-vlan10,Jenkins
+epg,bd,tenant,vrf
+epg-vlan10,bd-vlan10,DMZ,vrf-00
