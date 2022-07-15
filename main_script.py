@@ -2,6 +2,7 @@ from dataDump import dataread
 from ACI_Config import acilogin
 from ACI_Config import acirefresh
 from ACI_Config import ACItenantConfig
+from ACI_Config import ACIvrfConfig
 import warnings
 
 data = dataread()  # dumping data from excel
@@ -12,6 +13,7 @@ for value in data:
     # dumping data from excel into variables
     tenant = data[value]["tenant"]
     bd = data[value]["bd"]
+    vrf = data[value]["vrf"]
 
     for tenant in tenant:
         l3outchk = True
@@ -25,6 +27,19 @@ for value in data:
                 print(f"Tenant {tenant} already exist")
                 break
             else:
-                print("Good Job!!!")
+                break
+
+    for vrf in vrf:
+        l3outchk = True
+        print("Creating VRF")
+        header = acirefresh(header)
+        tenant = data[value]["tenant"]
+        vrf = data[value]["vrf"]
+        vrfCreate = ACIvrfConfig(tenant, header)
+        while True:
+            if ACIvrfConfig["totalCount"] != "0" and "already exist" in ACIvrfConfig['imdata'][0]['error']['attributes']['text']:
+                print(f"Tenant {vrf} already exist")
+                break
+            else:
                 break
         break
