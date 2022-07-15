@@ -78,7 +78,30 @@ def ACItenantConfig(tenant, header):
         #logger.info(e)
         return {}
 
-
+def ACIvrfConfig(tenant,vrf, header):
+    print ("Creating New VRF: {}".format(vrf))
+    #logger.info ("Changing VRF of bd {}".format(bd))
+    url = "https://sandboxapicdc.cisco.com/api/node/mo/uni/tn-{}/ctx-{}.json".format(tenant,vrf)
+    payload = {"fvCtx":{"attributes":{"dn":f"uni/tn-{tenant}/ctx-{vrf}","name":f"{vrf}","rn":f"ctx-{vrf}","status":"created"},"children":[]}}
+    try:
+        response = requests.request("POST", url, headers=header, json = payload, verify = False)
+        c = response.text
+        y = json.loads(c)
+        if response.ok:
+          print ("Success!! Got 200 OK to create new VRF: {}".format(vrf))
+          print("VRF created Successfully!!!")
+          #logger.info ("Success!! Got 200 OK to vrf change request for BD {}".format(bd))
+          return y
+        else:
+          print ("!!! cannot create new VRF: {}".format(vrf))
+          #logger.info("!!! cannot change vrf for BD {}, check error".format(bd))
+          return y
+    except Exception as e:
+        print ("error connecting APIC while creating VRF: {}".format(vrf))
+        print (e)
+        #logger.info("error connecting APIC while changing vrf for BD {}".format(bd))
+        #logger.info(e)
+        return {}
 
 
 
