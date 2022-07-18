@@ -4,6 +4,7 @@ pipeline {
     stage ('build') {
       steps {
         script {
+                bat 'cte.py',
                 bat 'main_script.py'
         }
       }
