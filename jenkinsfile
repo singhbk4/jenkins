@@ -1,12 +1,19 @@
 pipeline {
   agent any
   stages {
-    stage ('build') {
+    stage ('DataUpdate') {
       steps {
         script {
-                bat 'main_script.py'
+                bat 'cte.py'
         }
       }
     }
-  }
-}
+     stage ('build') {
+      steps {
+        script {
+                bat 'main_script.py'
+            }
+          }
+        }
+      }
+    }
