@@ -1,2 +1,2 @@
 epg,bd,tenant,vrf
-epg-vlan10,bd-vlan10,Tenant-A,VRF-A
+epg-vlanA,bd-vlanA,Tenant-A,VRF-A
